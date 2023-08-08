@@ -6,6 +6,9 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
             <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             
+                <link href="lib/tom-select/tom-select.css" rel="stylesheet">
+                <script src="lib/tom-select/tom-select.complete.min.js"></script>
+            
         
 <center>
 <h1></h1>
@@ -43,6 +46,12 @@
              
 
              
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
 
              
         </style>
@@ -52,11 +61,77 @@
     <body>
         <div class="card" style="width: 100%">
             
+                <div id="select-menu" class="card-header">
+                    <div class="row no-gutters">
+                        <div class="col-10 pb-2">
+                            <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="selectNode([value]);"
+                            id="select-node"
+                            placeholder="Select node..."
+                            >
+                                <option selected>Select a Node by ID</option>
+                                
+                                    <option value="0">0</option>
+                                
+                                    <option value="1">1</option>
+                                
+                                    <option value="2">2</option>
+                                
+                                    <option value="3">3</option>
+                                
+                                    <option value="4">4</option>
+                                
+                                    <option value="5">5</option>
+                                
+                                    <option value="6">6</option>
+                                
+                                    <option value="7">7</option>
+                                
+                                    <option value="8">8</option>
+                                
+                                    <option value="9">9</option>
+                                
+                                    <option value="10">10</option>
+                                
+                                    <option value="11">11</option>
+                                
+                                    <option value="12">12</option>
+                                
+                                    <option value="13">13</option>
+                                
+                                    <option value="14">14</option>
+                                
+                                    <option value="15">15</option>
+                                
+                                    <option value="16">16</option>
+                                
+                                    <option value="17">17</option>
+                                
+                                    <option value="18">18</option>
+                                
+                                    <option value="19">19</option>
+                                
+                                    <option value="20">20</option>
+                                
+                                    <option value="21">21</option>
+                                
+                            </select>
+                        </div>
+                        <div class="col-2 pb-2">
+                            <button type="button" class="btn btn-primary btn-block" onclick="neighbourhoodHighlight({nodes: []});">Reset Selection</button>
+                        </div>
+                    </div>
+                </div>
+            
             
             <div id="mynetwork" class="card-body"></div>
         </div>
 
         
+        
+            <div id="config"></div>
         
 
         <script type="text/javascript">
@@ -78,6 +153,14 @@
               };
 
               
+                  new TomSelect("#select-node",{
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      }
+                  });
+              
 
               
 
@@ -88,7 +171,7 @@
                   
 
                   // parsing and collecting nodes and edges from the python
-                  nodes = new vis.DataSet([{"color": "#9cb84d", "id": 0, "label": " BG ", "shape": "ellipse"}, {"color": "#9cb84d", "id": 1, "label": "GartenTeam", "shape": "ellipse"}, {"color": "#ffdf00", "id": 2, "label": "Buchhaltung", "shape": "dot"}, {"color": "#1e3b21", "id": 3, "label": "KoopStelle", "shape": "dot"}, {"color": "#1e3b21", "id": 4, "label": "GSZ", "shape": "dot"}, {"color": "#1e3b21", "id": 5, "label": "Liefernde", "shape": "dot"}, {"color": "#1e3b21", "id": 6, "label": "Medien", "shape": "dot"}, {"color": "#1e3b21", "id": 7, "label": "Politik", "shape": "dot"}, {"color": "#1e3b21", "id": 8, "label": "Technikum", "shape": "dot"}, {"color": "#1e3b21", "id": 9, "label": "Uni etc.\n Forschung", "shape": "dot"}, {"color": "#1e3b21", "id": 10, "label": "Bauern \n \u00f6ko-koop", "shape": "dot"}, {"color": "#ed6c77", "id": 11, "label": "Mitglieder", "shape": "ellipse"}, {"color": "#1e3b21", "id": 12, "label": "Andere Solawi", "shape": "dot"}, {"color": "#1e3b21", "id": 13, "label": "Juntagrico", "shape": "dot"}, {"color": "#ffdf00", "id": 14, "label": "Mitgliederverwaltung", "shape": "dot"}, {"color": "#1e3b21", "id": 15, "label": "Depot Verantwortlichen", "shape": "dot"}, {"color": "#ffdf00", "id": 16, "label": "WOmail Redaktion", "shape": "dot"}, {"color": "#1e3b21", "id": 17, "label": "Jungpflanzgruppe", "shape": "dot"}, {"color": "#1e3b21", "id": 18, "label": "Einmachgruppe", "shape": "dot"}, {"color": "#1e3b21", "id": 19, "label": "GWH-Gruppe", "shape": "dot"}, {"color": "#ffdf00", "id": 20, "label": "IT", "shape": "dot"}, {"color": "#1e3b21", "id": 21, "label": "GZA Wolfswinkel", "shape": "dot"}]);
+                  nodes = new vis.DataSet([{"color": "#9cb84d", "id": 0, "label": " BG ", "shape": "ellipse", "title": " BG "}, {"color": "#9cb84d", "id": 1, "label": "GartenTeam", "shape": "ellipse", "title": "GartenTeam"}, {"color": "#ffdf00", "id": 2, "label": "Buchhaltung", "shape": "dot", "title": "Buchhaltung"}, {"color": "#1e3b21", "id": 3, "label": "KoopStelle", "shape": "dot", "title": "KoopStelle"}, {"color": "#1e3b21", "id": 4, "label": "GSZ", "shape": "dot", "title": "GSZ"}, {"color": "#1e3b21", "id": 5, "label": "Liefernde", "shape": "dot", "title": "Liefernde"}, {"color": "#1e3b21", "id": 6, "label": "Medien", "shape": "dot", "title": "Medien"}, {"color": "#1e3b21", "id": 7, "label": "Politik", "shape": "dot", "title": "Politik"}, {"color": "#1e3b21", "id": 8, "label": "Technikum", "shape": "dot", "title": "Technikum"}, {"color": "#1e3b21", "id": 9, "label": "Uni etc.\n Forschung", "shape": "dot", "title": "Uni etc.\n Forschung"}, {"color": "#1e3b21", "id": 10, "label": "Bauern \n \u00f6ko-koop", "shape": "dot", "title": "Bauern \n \u00f6ko-koop"}, {"color": "#ed6c77", "id": 11, "label": "Mitglieder", "shape": "ellipse", "title": "Mitglieder"}, {"color": "#1e3b21", "id": 12, "label": "Andere Solawi", "shape": "dot", "title": "Andere Solawi"}, {"color": "#1e3b21", "id": 13, "label": "Juntagrico", "shape": "dot", "title": "Juntagrico"}, {"color": "#ffdf00", "id": 14, "label": "Mitgliederverwaltung", "shape": "dot", "title": "Mitgliederverwaltung"}, {"color": "#1e3b21", "id": 15, "label": "Depot Verantwortlichen", "shape": "dot", "title": "Depot Verantwortlichen"}, {"color": "#ffdf00", "id": 16, "label": "WOmail Redaktion", "shape": "dot", "title": "WOmail Redaktion"}, {"color": "#1e3b21", "id": 17, "label": "Jungpflanzgruppe", "shape": "dot", "title": "Jungpflanzgruppe"}, {"color": "#1e3b21", "id": 18, "label": "Einmachgruppe", "shape": "dot", "title": "Einmachgruppe"}, {"color": "#1e3b21", "id": 19, "label": "GWH-Gruppe", "shape": "dot", "title": "GWH-Gruppe"}, {"color": "#ffdf00", "id": 20, "label": "IT", "shape": "dot", "title": "IT"}, {"color": "#1e3b21", "id": 21, "label": "GZA Wolfswinkel", "shape": "dot", "title": "GZA Wolfswinkel"}]);
                   edges = new vis.DataSet([{"from": 0, "to": 1, "width": 4}, {"from": 0, "to": 12}, {"from": 0, "to": 2}, {"from": 0, "to": 11, "width": 4}, {"from": 1, "to": 2}, {"from": 0, "to": 7}, {"from": 1, "to": 5}, {"from": 1, "to": 6}, {"from": 1, "to": 9}, {"from": 1, "to": 10}, {"from": 11, "to": 14}, {"from": 11, "to": 15}, {"from": 1, "to": 17}, {"from": 1, "to": 18}, {"from": 0, "to": 4}, {"from": 1, "to": 4}, {"from": 1, "to": 8}, {"from": 0, "to": 16}, {"from": 16, "to": 11}, {"from": 0, "to": 3}, {"from": 0, "to": 20}, {"from": 1, "to": 20}, {"from": 2, "to": 20}, {"from": 14, "to": 20}, {"from": 13, "to": 20}, {"from": 11, "to": 20}, {"from": 16, "to": 20}, {"from": 1, "to": 11, "width": 4}, {"from": 1, "to": 21}, {"from": 1, "to": 19}, {"from": 2, "to": 14}]);
 
                   nodeColors = {};
@@ -102,7 +185,10 @@
 
                   var options = {
     "configure": {
-        "enabled": false
+        "enabled": true,
+        "filter": [
+            "physics"
+        ]
     },
     "edges": {
         "color": {
@@ -120,6 +206,15 @@
     },
     "physics": {
         "enabled": true,
+        "forceAtlas2Based": {
+            "avoidOverlap": 1,
+            "centralGravity": 0.01,
+            "damping": 1,
+            "gravitationalConstant": -40,
+            "springConstant": 0.08,
+            "springLength": 50
+        },
+        "solver": "forceAtlas2Based",
         "stabilization": {
             "enabled": true,
             "fit": true,
@@ -134,11 +229,17 @@
 
 
                   
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
 
                   network = new vis.Network(container, data, options);
 
                   
 
+                  
+                    network.on("selectNode", neighbourhoodHighlight);
                   
 
                   
